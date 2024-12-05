@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3</title>
+    <style>
+        #mostrarDatos{
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Cifrado César</h1>
+    <h2>- Descifrar -</h2>
+
+    <form action="" method="post" onsubmit="return descifrar(this, event)">
+        <label>Alfabeto
+            <select name="idiomas" id="idiomas">
+                <option value="castellano">Castellano</option>
+                <option value="ingles">Inglés</option>
+            </select>
+        </label><br><br>
+
+        <label>Texto a descifrar <textarea name="texto" id="texto"></textarea></label><br><br>
+
+        <label>Nivel de Rotado <input type="number" name="rotado" id="rotado"></label><br><br>
+
+        <button type="submit">Descifrar</button>
+    </form>
+
+    <p id="mostrarDatos"></p>
+
+    <script>
+        function descifrar(form, event) {
+            event.preventDefault();
+
+            const alfabetos = {
+                castellano: "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ",
+                ingles: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+            };
+
+            const idioma = form.idiomas.value;
+            const texto = form.texto.value.toUpperCase();
+            const rotacion = form.rotado.value;
+
+            const alfabeto = alfabetos[idioma];
+            let cadenaDescifrada = "";
+
+            for (let caracter of texto) {
+                const indice = alfabeto.indexOf(caracter);
+
+                if (indice !== -1) {
+                    let nuevaPos = (indice - rotacion + alfabeto.length) % alfabeto.length;
+                    cadenaDescifrada += alfabeto[nuevaPos];
+                } else {
+                    cadenaDescifrada += caracter;
+                }
+            }
+
+            document.getElementById("mostrarDatos").textContent = cadenaDescifrada;
+        }
+    </script>
+</body>
+</html>

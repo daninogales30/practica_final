@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2</title>
+</head>
+<body>
+    <h1>Configuracion de usuario</h1>
+    <h2>Inicio de sesion</h2>
+    <form action="cambia_cuenta.php" method="post" onsubmit="return validar(this)">
+        <label>¿Cuando quieres que Windows te vuelva a pedir que inicies sesión?
+            <select name="iniciosesion" id="iniciosesion">
+                <option value="suspension">Cuando el PC se activa trás haber estado en suspensión</option>
+                <option value="nunca">Nunca</option>
+            </select>
+        </label>
+
+        <h2>Contraseña</h2>
+        <label>Nueva contraseña <input type="password" name="password" id="password"></label><br>
+        <label>Vuelve a escribir la contraseña <input type="password" name="password2" id="password2"></label><br>
+        <label>Indicio de contraseña <textarea name="indicio" id="indicio"></textarea></label>
+
+        <h2>Privacidad</h2>
+        <label><input type="checkbox" name="detalles" id="detalles" value="true">Mostrar detalles de la cuenta en la pantalla de inicio de sesión</label><br><br>
+        <button type="submit">Aceptar</button>
+    </form>
+
+    <script>
+        function validar(form){
+            let expRegContraseña = /^[A-Z][A-Za-z0-9]{5,}[0-9]+$/;
+            let contraseña = form.password.value;
+            let contraseña2 = form.password2.value;
+            let indicioContraseña = form.indicio.value;
+
+            if(!expRegContraseña.test(contraseña)){
+                alert("La contraseña debe empezar por una letra mayúscula, tener un mínimo de 6 caracteres y contener, al menos, un dígito");
+                form.password.focus();
+                form.password.select();
+                return false;
+            }
+
+            if(contraseña != contraseña2){
+                alert("Las contraseñas escritas no coinciden. Vuelve a intentarlo");
+                form.password.focus();
+                form.password.select();
+                return false;
+            }
+
+            if(indicioContraseña.includes(contraseña)){
+                alert("El indicio de contraseña no puede contener la contraseña");
+                form.indicio.focus();
+                form.indicio.select();
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>
