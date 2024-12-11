@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejercicio 3</title>
     <style>
-        #mostrarDatos{
+        #mostrarDatos {
             color: red;
         }
     </style>
@@ -53,15 +53,21 @@
                 const indice = alfabeto.indexOf(caracter);
 
                 if (indice !== -1) {
-                    let nuevaPos = (indice - rotacion + alfabeto.length) % alfabeto.length;
+                    let desplazamiento = indice - rotacion;
+                    if (desplazamiento < 0) {
+                        desplazamiento += alfabeto.length;
+                    }
+                    let nuevaPos = desplazamiento % alfabeto.length;
                     cadenaDescifrada += alfabeto[nuevaPos];
                 } else {
                     cadenaDescifrada += caracter;
                 }
+
             }
 
             document.getElementById("mostrarDatos").textContent = cadenaDescifrada;
         }
     </script>
 </body>
+
 </html>
