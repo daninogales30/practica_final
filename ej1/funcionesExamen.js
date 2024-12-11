@@ -10,14 +10,16 @@ while (curiosos.length < 5) {
 
 function esCurioso(n) {
     let sumaCubos = 0;
-    let digitos = n.toString().split("");
+    let digitos = n.toString();
 
-    for (let digito of digitos) {
-        sumaCubos = sumaCubos + Math.pow(parseInt(digito), 3);
+    for (let i = 0; i < digitos.length; i++) {
+        let digito = parseInt(digitos[i]);
+        sumaCubos += Math.pow(digito, 3);
     }
 
     return n == sumaCubos;
 }
+
 
 alert("Los 5 primeros numeros curiosos son: " + curiosos)
 
