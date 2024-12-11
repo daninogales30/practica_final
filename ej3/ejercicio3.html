@@ -57,8 +57,7 @@
                     if (desplazamiento < 0) {
                         desplazamiento += alfabeto.length;
                     }
-                    let nuevaPos = desplazamiento % alfabeto.length;
-                    cadenaDescifrada += alfabeto[nuevaPos];
+                    cadenaDescifrada += alfabeto[desplazamiento];
                 } else {
                     cadenaDescifrada += caracter;
                 }
