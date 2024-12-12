@@ -1,12 +1,12 @@
 const curiosos = [];
 let numero = 1;
 
-while (curiosos.length < 5) {
+do{
     if (esCurioso(numero)) {
         curiosos.push(numero);
     }
     numero++;
-}
+}while (curiosos.length < 5);
 
 function esCurioso(n) {
     let sumaCubos = 0;
