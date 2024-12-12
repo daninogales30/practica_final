@@ -47,7 +47,7 @@
                 return false;
             }
 
-            if(indicioContraseña.includes(contraseña)){
+            if(indicioContraseña.toLowerCase().includes(contraseña.toLowerCase())){
                 alert("El indicio de contraseña no puede contener la contraseña");
                 form.indicio.focus();
                 form.indicio.select();
